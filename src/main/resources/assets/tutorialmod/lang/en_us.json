@@ -2,5 +2,11 @@
   "item.tutorialmod.zircon": "Zircon",
   "item.tutorialmod.raw_zircon": "Raw Zircon",
 
+  "item.tutorialmod.zircon_block": "Block of Zircon",
+  "item.tutorialmod.zircon_ore": "Zircon Ore",
+  "item.tutorialmod.deepslate_zircon_ore": "Deepslate Zircon Ore",
+  "item.tutorialmod.endstone_zircon_ore": "Endstone Zircon Ore",
+  "item.tutorialmod.netherrack_zircon_ore": "Netherrack Zircon Ore",
+
   "itemGroup.tutorialtab": "Zircon Tutorial Tab"
 }
