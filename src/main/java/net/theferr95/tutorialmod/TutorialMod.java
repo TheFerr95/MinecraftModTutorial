@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.theferr95.tutorialmod.block.ModBlocks;
 import net.theferr95.tutorialmod.item.ModItems;
+import net.theferr95.tutorialmod.painting.ModPaintings;
 import net.theferr95.tutorialmod.villager.ModVillagers;
 import org.slf4j.Logger;
 
@@ -25,6 +26,7 @@ public class TutorialMod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModVillagers.register(modEventBus);
+        ModPaintings.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
