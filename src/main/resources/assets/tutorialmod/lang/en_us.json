@@ -16,5 +16,8 @@
 
   "itemGroup.tutorialtab": "Zircon Tutorial Tab",
 
-  "entity.minecraft.villager.tutorialmod.jumpy_master": "Jumpy Master"
+  "entity.minecraft.villager.tutorialmod.jumpy_master": "Jumpy Master",
+
+  "key.category.tutorialmod.tutorial": "Tutorial Mod",
+  "key.tutorialmod.drink_water": "Drink Water"
 }
