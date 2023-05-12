@@ -13,6 +13,7 @@ import net.theferr95.tutorialmod.item.ModItems;
 import net.theferr95.tutorialmod.painting.ModPaintings;
 import net.theferr95.tutorialmod.villager.ModVillagers;
 import net.theferr95.tutorialmod.world.feature.ModConfiguredFeatures;
+import net.theferr95.tutorialmod.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -26,9 +27,12 @@ public class TutorialMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
         ModVillagers.register(modEventBus);
         ModPaintings.register(modEventBus);
+
         ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
