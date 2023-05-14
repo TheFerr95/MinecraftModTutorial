@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.theferr95.tutorialmod.block.ModBlocks;
 import net.theferr95.tutorialmod.item.ModItems;
+import net.theferr95.tutorialmod.networking.ModMessages;
 import net.theferr95.tutorialmod.painting.ModPaintings;
 import net.theferr95.tutorialmod.villager.ModVillagers;
 import net.theferr95.tutorialmod.world.feature.ModConfiguredFeatures;
@@ -41,8 +42,10 @@ public class TutorialMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            ModMessages.register();
             ModVillagers.registerPOIs();
         });
+
     }
 
 

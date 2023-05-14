@@ -1,13 +1,13 @@
 package net.theferr95.tutorialmod.event;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.theferr95.tutorialmod.TutorialMod;
+import net.theferr95.tutorialmod.networking.ModMessages;
+import net.theferr95.tutorialmod.networking.packet.DrinkWaterClientToServerPacket;
 import net.theferr95.tutorialmod.util.KeyBinding;
 
 public class ClientEvents {
@@ -16,7 +16,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if (KeyBinding.DRINKING_KEY.consumeClick()) {
-                Minecraft.getInstance().player.sendSystemMessage(Component.literal("Pressed a Key!"));
+                ModMessages.sendToServer(new DrinkWaterClientToServerPacket());
             }
         }
     }
