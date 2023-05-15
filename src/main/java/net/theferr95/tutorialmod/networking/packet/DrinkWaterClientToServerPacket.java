@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkEvent;
+import net.theferr95.tutorialmod.thirst.PlayerThirstProvider;
 
 import java.util.function.Supplier;
 
@@ -34,15 +35,28 @@ public class DrinkWaterClientToServerPacket implements ClientToServerPacket {
             if (hasWaterAroundThem(player, level, 2)) {
                 // notify the player that water has been drunk
                 player.sendSystemMessage(Component.translatable(MESSAGE_DRINK_WATER).withStyle(ChatFormatting.DARK_AQUA));
+
                 // play the drinking sound
                 level.playSound(null, player.getOnPos(), SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS,
                         0.5F, level.random.nextFloat() * 0.1F + 0.9F);
-                // increase the water level / thirst level of player
-                // output the current thirst level
+
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(playerThirst -> {
+                    // increase the water level / thirst level of player
+                    playerThirst.addThirst(1);
+
+                    // output the current thirst level
+                    player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                });
+
             } else {
                 // notify the player that there is no water to drink
                 player.sendSystemMessage(Component.translatable(MESSAGE_NO_WATER).withStyle(ChatFormatting.RED));
                 // output the current thirst level
+
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(playerThirst -> {
+                    player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                });
+
             }
 
         });
