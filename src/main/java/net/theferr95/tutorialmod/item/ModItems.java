@@ -1,14 +1,17 @@
 package net.theferr95.tutorialmod.item;
 
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.theferr95.tutorialmod.TutorialMod;
 import net.theferr95.tutorialmod.block.ModBlocks;
+import net.theferr95.tutorialmod.fluid.ModFluids;
 import net.theferr95.tutorialmod.item.custom.EightBallItem;
 
 public class ModItems {
@@ -31,6 +34,10 @@ public class ModItems {
     public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)
                     .food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
+
+    public static final RegistryObject<Item> SOAP_WATER_BUCKET = ITEMS.register("soap_water_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_SOAP_WATER,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

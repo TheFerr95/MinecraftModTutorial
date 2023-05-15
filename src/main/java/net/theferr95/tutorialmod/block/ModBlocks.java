@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +18,7 @@ import net.theferr95.tutorialmod.TutorialMod;
 import net.theferr95.tutorialmod.block.custom.BlueberryCropBlock;
 import net.theferr95.tutorialmod.block.custom.JumpyBlock;
 import net.theferr95.tutorialmod.block.custom.ZirconLampBlock;
+import net.theferr95.tutorialmod.fluid.ModFluids;
 import net.theferr95.tutorialmod.item.ModCreativeModeTab;
 import net.theferr95.tutorialmod.item.ModItems;
 
@@ -86,7 +88,7 @@ public class ModBlocks {
                     () -> new ZirconLampBlock(BlockBehaviour.Properties.of(Material.STONE)
                             .strength(6f)
                             .requiresCorrectToolForDrops()
-                            .lightLevel(state -> state.getValue(ZirconLampBlock.LIT) ? 15: 0)
+                            .lightLevel(state -> state.getValue(ZirconLampBlock.LIT) ? 15 : 0)
                     ),
                     ModCreativeModeTab.TUTORIAL_TAB
             );
@@ -96,6 +98,13 @@ public class ModBlocks {
                     () -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT))
             );
 
+    public static final RegistryObject<LiquidBlock> SOAP_WATER_BLOCK =
+            BLOCKS.register("soap_water_block",
+                    () -> new LiquidBlock(
+                            ModFluids.SOURCE_SOAP_WATER,
+                            BlockBehaviour.Properties.copy(Blocks.WATER)
+                    )
+            );
 
     private static <T extends Block> RegistryObject<T> registerBlock(
             String name,
