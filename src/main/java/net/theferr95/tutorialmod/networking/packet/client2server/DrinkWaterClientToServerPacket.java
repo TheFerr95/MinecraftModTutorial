@@ -1,4 +1,4 @@
-package net.theferr95.tutorialmod.networking.packet;
+package net.theferr95.tutorialmod.networking.packet.client2server;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -9,11 +9,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkEvent;
+import net.theferr95.tutorialmod.networking.ModMessages;
+import net.theferr95.tutorialmod.networking.packet.MessagePacket;
+import net.theferr95.tutorialmod.networking.packet.server2client.ThirstDataSyncServerToClientPacket;
 import net.theferr95.tutorialmod.thirst.PlayerThirstProvider;
 
 import java.util.function.Supplier;
 
-public class DrinkWaterClientToServerPacket implements ClientToServerPacket {
+public class DrinkWaterClientToServerPacket implements MessagePacket {
 
     private static final String MESSAGE_DRINK_WATER = "message.tutorialmod.drink_water";
     private static final String MESSAGE_NO_WATER = "message.tutorialmod.no_water";
@@ -45,7 +48,8 @@ public class DrinkWaterClientToServerPacket implements ClientToServerPacket {
                     playerThirst.addThirst(1);
 
                     // output the current thirst level
-                    player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                    //player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                    ModMessages.sendToPlayer(new ThirstDataSyncServerToClientPacket(playerThirst.getThirst()), player);
                 });
 
             } else {
@@ -54,7 +58,8 @@ public class DrinkWaterClientToServerPacket implements ClientToServerPacket {
                 // output the current thirst level
 
                 player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(playerThirst -> {
-                    player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                    //player.sendSystemMessage(Component.literal("Current Thirst " + playerThirst.getThirst()).withStyle(ChatFormatting.AQUA));
+                    ModMessages.sendToPlayer(new ThirstDataSyncServerToClientPacket(playerThirst.getThirst()), player);
                 });
 
             }

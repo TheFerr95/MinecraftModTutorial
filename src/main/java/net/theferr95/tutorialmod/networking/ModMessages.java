@@ -7,8 +7,9 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.theferr95.tutorialmod.TutorialMod;
-import net.theferr95.tutorialmod.networking.packet.DrinkWaterClientToServerPacket;
-import net.theferr95.tutorialmod.networking.packet.ExampleClientToServerPacket;
+import net.theferr95.tutorialmod.networking.packet.client2server.DrinkWaterClientToServerPacket;
+import net.theferr95.tutorialmod.networking.packet.client2server.ExampleClientToServerPacket;
+import net.theferr95.tutorialmod.networking.packet.server2client.ThirstDataSyncServerToClientPacket;
 
 public class ModMessages {
 
@@ -40,6 +41,12 @@ public class ModMessages {
                 .decoder(DrinkWaterClientToServerPacket::new)
                 .encoder(DrinkWaterClientToServerPacket::toBytes)
                 .consumerMainThread(DrinkWaterClientToServerPacket::handle)
+                .add();
+
+        net.messageBuilder(ThirstDataSyncServerToClientPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ThirstDataSyncServerToClientPacket::new)
+                .encoder(ThirstDataSyncServerToClientPacket::toBytes)
+                .consumerMainThread(ThirstDataSyncServerToClientPacket::handle)
                 .add();
 
     }

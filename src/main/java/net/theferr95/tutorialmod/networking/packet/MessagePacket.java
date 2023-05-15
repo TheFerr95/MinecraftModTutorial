@@ -5,7 +5,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public interface ClientToServerPacket {
+public interface MessagePacket {
 
     default void toBytes(FriendlyByteBuf buf) {
 

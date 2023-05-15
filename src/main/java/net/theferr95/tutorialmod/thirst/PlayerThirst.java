@@ -15,11 +15,11 @@ public class PlayerThirst {
     }
 
     public void addThirst(int thirstPoint) {
-        this.thirst = Math.min(this.thirst + thirstPoint, MAX_THIRST);
+        this.thirst = Math.min(this.thirst + thirstPoint, MAX_THIRST); //TODO sincronizzare qui, passare player come parametro
     }
 
     public void subThirst(int thirstPoint) {
-        this.thirst = Math.max(this.thirst - thirstPoint, MIN_THIRST);
+        this.thirst = Math.max(this.thirst - thirstPoint, MIN_THIRST); //TODO sincronizzare qui, passare player come parametro
     }
 
     public void copyFrom(PlayerThirst source) {
